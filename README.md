@@ -1,7 +1,7 @@
 # MT AWS API
 
 Visit confluence for more:
-
+https://confluence.godaddy.com/display/managedAWS/MT+AWS+API
 
 
 ## Local Dev
