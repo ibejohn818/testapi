@@ -22,7 +22,7 @@ class OnboardAccounts(SqsClient):
         # check how many times we've processed this message
         print("MESSAGE")
         print(msg)
-        tries =  msg.get('attributes').get('ApproximateReceiveCount') > 5
+        tries =  int(msg.get('attributes').get('ApproximateReceiveCount'))
         print("ATTEMPT: {}".format(tries))
         if tries > 5:
             # send a message to somebody then delete

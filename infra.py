@@ -33,12 +33,10 @@ import awacs.s3
 import yaml
 from inflection import camelize, underscore
 import json
-import sys
-import os
 
 APIGW_STAGE = "api"
 
-def get_swagger(swagger_func):
+def get_swagger(prefix, swagger_func):
     """
     """
     SWAG = 'infra/swagger.json'
@@ -47,6 +45,7 @@ def get_swagger(swagger_func):
     swagger = swag_handle.read()
 
     return swagger % (
+        prefix,
         swagger_func.output_function_arn()
     )
 
@@ -146,7 +145,7 @@ def api_gw(infra, stacks):
         )]
     ))
 
-    swagger_json = get_swagger(stacks['swagger_func'])
+    swagger_json = get_swagger(infra.prefix, stacks['swagger_func'])
     # print("SW", swagger_json)
     api_gw = apigateway.SwaggerAPIStack("MtawsApi", swagger_json, api_role)
     api_gw.stage_name = APIGW_STAGE
@@ -221,14 +220,7 @@ def deploy(infra, prefix):
 
     return sub, stacks
 
-def import_ci(infra):
-    SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-    sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, './infra/codebuild')))
-    from infra_ci import deploy_ci
-    deploy_ci(infra)
-
-infra = nimbi.Infra('MtApi')
+infra = nimbi.Infra('mtawsapi')
 infra.add_cred(AWSCred(region='us-west-2'))
 
 dev_infra, dev_stacks = deploy(infra, 'Dev')
-import_ci(infra)

@@ -20,3 +20,8 @@ docker-test:
 
 coverhtml:
 	$(MAKE) -C ./src coverhtml
+
+deploy-ci-infra:
+	cd infra/codebuild && nimbi deploy
+deploy-ci-lambda:
+	cd infra/codebuild && deploy/package.sh 

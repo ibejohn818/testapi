@@ -20,6 +20,7 @@ account = api.model('account', {
     'aws_account_id': fields.Integer(readonly=True, description='AWS Account ID'),
     'name': fields.String(description='Name of account'),
     'create_state': fields.String(readonly=True, description='The creation state of the account. Starts at "PENDING" ends at "COMPLETED"'),
+    'account_type': fields.String(description='The type of account. Choices: managed, hostops, system'),
     'active': fields.Boolean(readonly=True, description='If account is active'),
     'root_email': fields.String(readonly=True, description='Email address of the root user'),
     'secondary_emails': fields.List(fields.String(description='Secondary email address'), description='List of secondary email addresses')

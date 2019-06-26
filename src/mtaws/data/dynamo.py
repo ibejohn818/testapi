@@ -31,6 +31,7 @@ class Account(Model):
     aws_account_id = UnicodeAttribute(null=True)
     secondary_emails = ListAttribute()
     create_state = UnicodeAttribute()
+    account_type = UnicodeAttribute()
 
 
 

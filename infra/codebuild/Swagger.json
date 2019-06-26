@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "2018-05-28T22:05:07Z",
-    "title": "CustomerTasksGitHook"
+    "title": "MT AQS Api CI"
   },
   "host": "",
   "basePath": "",
