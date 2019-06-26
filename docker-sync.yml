@@ -2,6 +2,6 @@ version: '2'
 options:
   compose-file-path: ./docker-compose-mac.yml
 syncs:
-  mtawssync:
+  mtsrcsync:
     src: './src'
 

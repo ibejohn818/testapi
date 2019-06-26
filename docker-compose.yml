@@ -48,25 +48,25 @@ services:
     ports:
       - 9324:9324
       - 9325:9325
-  sqsrunner:
-    build:
-      context: docker/api
-    image: mtaws/python36
-    volumes:
-      - ./src:/app
-    working_dir: /app
-    environment:
-      - DOCKER=1
-      - DDB_HOST=http://ddb:8989
-      - AWS_SECRET_ACCESS_KEY=''
-      - AWS_ACCESS_KEY_ID=''
-      - SWAGG_API_KEY=123456
-      - API_PREFIX=/api
-    command:
-      - python
-      - /app/local_sqs_runner.py
-      - runner
-    depends_on:
-      - sqs
+  #sqsrunner:
+    #build:
+      #context: docker/api
+    #image: mtaws/python36
+    #volumes:
+      #- ./src:/app
+    #working_dir: /app
+    #environment:
+      #- DOCKER=1
+      #- DDB_HOST=http://ddb:8989
+      #- AWS_SECRET_ACCESS_KEY=''
+      #- AWS_ACCESS_KEY_ID=''
+      #- SWAGG_API_KEY=123456
+      #- API_PREFIX=/api
+    #command:
+      #- python
+      #- /app/local_sqs_runner.py
+      #- runner
+    #depends_on:
+      #- sqs
 volumes:
   dynamo:

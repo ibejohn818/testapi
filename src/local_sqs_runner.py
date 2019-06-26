@@ -42,7 +42,7 @@ def parse_msg(msg):
         'md5OfBody': msg.md5_of_body,
         'md5OfMessageAttributes': msg.md5_of_message_attributes,
         'messageAttributes': {},
-        'attributes': {},
+        'attributes': msg.attributes,
 
     }
 
@@ -51,9 +51,6 @@ def parse_msg(msg):
         for kk, vv in v.items():
             new[k][lowerf(kk)] = vv
         out['messageAttributes'].update(new)
-
-    for k, v in msg.attributes.items():
-        out['attributes'].update({lowerf(k): v})
 
     return out
 
@@ -70,8 +67,8 @@ def start_listener(**kw):
         the sqs_handler formatted in the same
         way cloudwatch events does
     """
-    queue = sqs.Sqs.factory(kw.get("queue")).resource()
     while True:
+        queue = sqs.Sqs.factory(kw.get("queue")).resource()
         msgs = queue.receive_messages(WaitTimeSeconds=20,
                                       MessageAttributeNames=['All'],
                                       AttributeNames=['All'])

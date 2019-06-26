@@ -15,9 +15,10 @@ via nimbi infra.
 ## Local Dev
 
 Local dev using `docker-compose` [click here for docs](docker/README.md)
-
-
  
+## SQS
+More on the SQS implementation can be found [here](SQS.md)
+
  
 ## AWS / Nimbi
  

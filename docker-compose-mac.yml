@@ -7,7 +7,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - mtawssync:/app:nocopy
+      - mtsrcsync:/app:nocopy
     working_dir: /app
     environment:
       - DOCKER=1
@@ -53,7 +53,7 @@ services:
       #context: docker/api
     #image: mtaws/python36
     #volumes:
-      #- mtawssync:/app:nocopy
+      #- mtsrcsync:/app:nocopy
     #working_dir: /app
     #environment:
       #- DOCKER=1
@@ -70,5 +70,5 @@ services:
       #- sqs
 volumes:
   dynamo:
-  mtawssync:
+  mtsrcsync:
     external: true
