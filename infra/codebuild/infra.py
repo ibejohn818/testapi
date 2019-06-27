@@ -44,7 +44,7 @@ def codebuild_stacks(sub, stacks):
     )
     env = codebuild.Environment("aws/codebuild/python:3.7.1")
     repo = codebuild.GithubEnterpriseSource(
-        "https://github.com/mediatemple/mt_aws_api.git"
+        "https://github.com/ibejohn818/testapi.git"
     )
 
     project = codebuild.BuildProject("MtawsApi", role, env, repo)

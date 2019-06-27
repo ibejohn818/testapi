@@ -4,7 +4,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - python setup.py develop
+      - cd src && python setup.py develop
       - pip install -r requirements_dev.txt
   build:
     commands:
