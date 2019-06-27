@@ -18,7 +18,7 @@ import json
 import sys
 import os
 
-def get_swagger(f1, f2):
+def get_swagger(f1):
     with open("swagger.json", "r") as swag:
         swag_json = swag.read() % (f1.output_function_arn())
         return swag_json
@@ -47,7 +47,7 @@ def codebuild_stacks(sub, stacks):
         "https://github.com/mediatemple/mt_aws_api.git"
     )
 
-    project = codebuild.BuildProject("CustomerTasks", role, env, repo)
+    project = codebuild.BuildProject("MtawsApi", role, env, repo)
     build_stack = codebuild.CodeBuildStack()
 
     build_stack.add_build(project)
@@ -124,7 +124,7 @@ def codebuild_api_gw(sub, stacks):
     api_role.add_policy(iam.CloudWatchFullAccess())
     api_role.add_policy(iam.InvokeFunction())
 
-    swag_json = get_swagger(stacks['event_lambda'], stacks['webhook_lambda'])
+    swag_json = get_swagger(stacks['webhook_lambda'])
 
     webhook_api = apigateway.SwaggerAPIStack("AwsApiGithook", swag_json, api_role)
     webhook_api.stage_name = "ci"

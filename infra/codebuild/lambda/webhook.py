@@ -18,14 +18,15 @@ def handler(evt, ctx):
         cbc = boto3.client("codebuild")
         commit_id = body["pull_request"]["head"]["sha"]
         cbc.start_build(
-            projectName="CustomerTasks",
+            projectName="MtawsApi",
             sourceVersion=body["pull_request"]["head"]["ref"],
             environmentVariablesOverride=[
                 {"name": "commit", "value": commit_id}
             ],
         )
 
-        mt = github_client().get_organization("mediatemple")
+        # mt = github_client().get_organization("mediatemple")
+        mt = github_client().get_user("ibejohn818")
         repo = mt.get_repo(body["repository"]["name"])
         commit = repo.get_commit(commit_id)
 

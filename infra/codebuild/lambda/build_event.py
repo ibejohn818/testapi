@@ -27,8 +27,10 @@ def handler(evt, ctx):
 
     cb_link = build_link(evt['detail']['build-id'])
     status = evt['detail']['build-status']
-    mt = github_client().get_organization("mediatemple")
-    repo = mt.get_repo("aws-customer-tasks")
+    # mt = github_client().get_organization("mediatemple")
+    mt = github_client().get_user("ibejohn818")
+    # repo = mt.get_repo("mt_aws_api")
+    repo = mt.get_repo("testapi")
     commit = repo.get_commit(commit)
 
     status_labels = {

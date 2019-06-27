@@ -1,0 +1,13 @@
+---
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - python setup.py develop
+      - pip install -r requirements_dev.txt
+  build:
+    commands:
+      - git checkout $Branch
+      - py.test
+
